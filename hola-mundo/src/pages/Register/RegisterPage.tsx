@@ -1,21 +1,21 @@
 import React from "react";
 import { IonPage, IonContent, IonHeader, IonToolbar, IonTitle } from "@ionic/react";
-import SplashScreen from "../components/login"; // Importamos el componente
+import RegisterComponent from "../../components/Register/Register";
 
-const Home: React.FC = () => {
+const RegisterPage: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Inicio</IonTitle>
+          <IonTitle>Register</IonTitle>
         </IonToolbar>
       </IonHeader>
 
       <IonContent fullscreen>
-        <SplashScreen /> {/* Mostramos el componente en la Home */}
+        <RegisterComponent />
       </IonContent>
     </IonPage>
   );
 };
 
-export default Home;
+export default RegisterPage;
