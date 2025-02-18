@@ -10,7 +10,7 @@ import {
   IonToolbar,
   IonTitle,
 } from "@ionic/react";
-import "./Register.css"; // Importamos el CSS con estilos similares al login
+import "./Register.css"; 
 
 interface Registration {
   email: string;
@@ -29,10 +29,8 @@ const Register: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [birthDate, setBirthDate] = useState("");
 
-  // Estado para guardar múltiples registros
   const [registrations, setRegistrations] = useState<Registration[]>([]);
 
-  // Estados para manejo de errores y validez global
   const [errors, setErrors] = useState<{
     email?: string;
     fullName?: string;
@@ -44,12 +42,10 @@ const Register: React.FC = () => {
 
   const [formValid, setFormValid] = useState(false);
 
-  // Se ejecuta cada vez que cambie alguno de los inputs, validando el formulario
   useEffect(() => {
     validateForm();
   }, [email, fullName, username, password, confirmPassword, birthDate]);
 
-  // Funciones para actualizar campos con sus restricciones:
   const handleEmailChange = (event: CustomEvent) => {
     // Elimina espacios
     const value = event.detail.value.replace(/\s/g, "");
@@ -57,7 +53,6 @@ const Register: React.FC = () => {
   };
 
   const handleFullNameChange = (event: CustomEvent) => {
-    // Mantener espacios, pero forzar a mayúsculas
     const value = event.detail.value.toUpperCase();
     setFullName(value);
   };
@@ -81,7 +76,6 @@ const Register: React.FC = () => {
   };
 
   const handleBirthDateChange = (event: CustomEvent) => {
-    // Fecha (no suele incluir espacios, pero por consistencia)
     const value = event.detail.value.replace(/\s/g, "");
     setBirthDate(value);
   };
@@ -152,7 +146,6 @@ const Register: React.FC = () => {
       birthDate,
     };
 
-    // Agregar al array de registros
     setRegistrations([...registrations, newRegistration]);
 
     // Limpiar campos
@@ -163,7 +156,6 @@ const Register: React.FC = () => {
     setConfirmPassword("");
     setBirthDate("");
 
-    // Notificar (en proyecto real se podría mostrar un modal o redirigir)
     alert("Registro exitoso");
   };
 
@@ -176,9 +168,7 @@ const Register: React.FC = () => {
       </IonHeader>
 
       <IonContent fullscreen>
-        {/* Contenedor con fondo e imagen, igual al login */}
         <div className="register-container">
-          {/* Caja translúcida (glass) */}
           <div className="register-box">
             <h2>Register</h2>
 

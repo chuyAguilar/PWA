@@ -1,3 +1,5 @@
+// Login.jsx
+// author: 'nombre de alumno'
 import React, { useState } from "react";
 import {
   IonPage,
@@ -6,16 +8,18 @@ import {
   IonItem,
   IonLabel,
   IonButton,
-  IonCheckbox,
   IonHeader,
   IonToolbar,
   IonTitle,
 } from "@ionic/react";
+import { useHistory } from "react-router-dom";
 import "./login.css"; 
+
 const Login: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isValid, setIsValid] = useState<boolean>(false);
+  const history = useHistory();
 
   const handleUsernameChange = (event: CustomEvent) => {
     let value = event.detail.value.toLowerCase().replace(/\s/g, "");
@@ -33,14 +37,23 @@ const Login: React.FC = () => {
     setIsValid(user.length > 0 && pass.length > 0);
   };
 
-  // (Opcional) Acción para el "Forgot Password"
+ // Acción para simular login exitoso y redirigir a LoadingLoginSuccess
+const handleLogin = () => {
+  if (username === "admin" && password === "admin") {
+    history.push("/loading-login-success");
+  } else {
+    alert("Credenciales incorrectas. Intenta con admin/admin");
+  }
+};
+
+
+  // (Opcional) Acción para "Forgot Password"
   const handleForgotPassword = () => {
     alert("Funcionalidad de recuperar contraseña");
   };
 
   return (
     <IonPage>
-      
       <IonHeader>
         <IonToolbar>
           <IonTitle>Mi App</IonTitle>
@@ -48,9 +61,7 @@ const Login: React.FC = () => {
       </IonHeader>
 
       <IonContent fullscreen>
-        
         <div className="login-container">
-         
           <div className="login-box">
             <h2>Login</h2>
 
@@ -78,22 +89,12 @@ const Login: React.FC = () => {
               />
             </IonItem>
 
-            
-            {/* <IonItem lines="none" className="options-row">
-              <IonLabel>
-                <IonCheckbox slot="start" />
-                <span className="remember-me-text"> Remember Me</span>
-              </IonLabel>
-              <IonButton fill="clear" size="small" color="light" onClick={handleForgotPassword}>
-                Forgot Password
-              </IonButton>
-            </IonItem> */}
-
             {/* Botón de Login */}
             <IonButton
               expand="block"
               disabled={!isValid}
               className="login-button"
+              onClick={handleLogin}  // Se llama a handleLogin al hacer clic
             >
               Log in
             </IonButton>

@@ -1,8 +1,8 @@
 import React from "react";
 import { IonPage, IonContent, IonHeader, IonToolbar, IonTitle } from "@ionic/react";
-import SplashScreen from "../../components/Login/login"; 
+import SplashScreen from "../../components/LoginForm/loginForm"; 
 
-const Home: React.FC = () => {
+const Login: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
@@ -18,4 +18,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Login;
